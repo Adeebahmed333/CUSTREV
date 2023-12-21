@@ -1,113 +1,122 @@
-import Image from 'next/image'
-
+/* eslint-disable react/jsx-key */
+'use client'
+import { useState } from 'react'
+import FeedBack from './components/FeedbackItem'
+import Button from './components/Button'
 export default function Home() {
+  const [showFeedbackPop,setFeedbackPop]=useState(false);
+  const [showFeedbackItem,setFeedbackItem]=useState(null);
+  function openFeedbackPop()
+  {
+     setFeedbackPop(true);
+  }
+  function openFeedbackItem()
+  {
+setFeedbackItem(true);
+  }
+  const feedbacksI=[
+    
+      {
+        "title": "Make Almira",
+        "description": "Create a stylish and functional Almira with meticulous attention to detail, offering ample storage space and a sleek design.",
+        "votesCount": 7
+      },
+      {
+        "title": "Make Sofas",
+        "description": "Craft comfortable and aesthetically pleasing sofas that seamlessly blend into any living space and you should try to do more interesting stuff like building custom things more often.",
+        "votesCount": 6
+      },
+      {
+        "title": "Make LCD Units",
+        "description": "Design modern and space-efficient LCD units, combining form and functionality to enhance your entertainment area.",
+        "votesCount": 5
+      },
+      {
+        "title": "Make Wood Partitions",
+        "description": "Construct wooden partitions that add a touch of elegance to your space while providing privacy and organization.",
+        "votesCount": 4
+      },
+      {
+        "title": "Make Doors",
+        "description": "Manufacture high-quality doors that not only ensure security but also contribute to the overall aesthetic appeal of your home or office.",
+        "votesCount": 3
+      },
+      {
+        "title": "Make Study Tables",
+        "description": "Build functional and ergonomic study tables, fostering a conducive environment for focused work and learning.",
+        "votesCount": 2
+      },
+      {
+        "title": "Make Cricket Bats",
+        "description": "Make high quality cricket bats it will attract children to buy your productsand moreover it will improve your reach to customers of various ages.",
+        "votesCount": 1
+      }
+      
+  ];
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="bg-white md:max-w-2xl mx-auto md:shadow-lg md:rounded-lg md:mt-8 overflow-hidden">
+     <div className=" bg-gradient-to-r from-red-500 to-purple-300 p-7">
+      <h1 className="font-bold text-xl">SA Furniture</h1>
+      <p className=' text-opacity-90 text- '>what kind of furnitures we should make? what do you guys think ?</p>
+     </div>
+
+     <div className=' bg-gray-100 px-7 py-4 flex border-b'>
+        <div className='grow'></div>
+        <div>
+        <Button primary onClick={openFeedbackPop} >Give Feedback</Button>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className='px-7'> 
+    {feedbacksI.map((feedbackIt) => (
+      <FeedBack {... feedbackIt} onOpen={openFeedbackItem}/>
+))}
+  
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      {showFeedbackPop && 
+        <div className=' fixed inset-0 bg-white md:bg-black md:bg-opacity-70 flex md:items-center'>
+            <button onClick={()=>setFeedbackPop(false)} className='hidden md:block fixed top-3 right-3 text-white'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+</button>
+          <div className='w-full'>
+          <div className=' bg-white md:max-w-2xl md:mx-auto md:rounded-lg md:overflow-hidden'>
+            <div className=' relative'>
+              <button onClick={()=>setFeedbackPop(false)} className='absolute top-3 left-7 md:hidden text-gray-600'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+</svg>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+              </button>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+              <h2 className='py-4 text-center border-b'>Give a FeedBack </h2>
+  
+            </div>
+
+
+            
+             <form className='p-7'>
+              <label className='block mt-4 mb-2'>Title</label>
+              <input className='w-full border p-2 rounded-md text-slate-700' type='text' placeholder='A short Title'/>
+              <label className='block mt-4 mb-2'>Text Area</label>
+              <textarea className='w-full border p-2 rounded-md text-slate-700' placeholder='Please Include Any Detail'></textarea>
+              <div className='flex mt-2 gap-2 justify-end'>
+              <Button>Attach Files</Button>
+              <Button primary>Create Post</Button>
+              </div>
+      
+              
+
+
+             </form>
+          </div>
+          </div>
+
+        </div>
+        }
     </main>
   )
 }
